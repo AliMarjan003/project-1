@@ -96,6 +96,7 @@ class _GoldpriceState extends State<Goldprice> {
             ),
           ),
           FloatingActionButton(onPressed: (){
+            
                 double tolaprice=double.parse(tolapriceController.text);
                 double tolaquantity=double.parse(tolaquantityController.text);
                 double gramquantity=double.parse(gramquantityCotroller.text);
@@ -107,16 +108,18 @@ class _GoldpriceState extends State<Goldprice> {
 
                 Totalgramprice=(tolaprice/12)*gramquantity;
 
-                Rattipricepergram=Pricepergram/8;
+                Rattipricepergram=tolaprice/96;
 
-                totalrattiprice=(Pricepergram/8)*rattiquantity;
+                totalrattiprice=(tolaprice/96)*rattiquantity;
 
                 Price=Totaltolaprice+Totalgramprice+totalrattiprice;
 
                 setState(() {
 
                 });
-          },child: Text("Calculate",style: TextStyle(color: Colors.orange,fontSize: 13),),backgroundColor: Colors.black,),
+          },
+            child: Text("Calculate",style: TextStyle(color: Colors.orange,fontSize: 13),),backgroundColor: Colors.black,
+          ),
           SizedBox(height: 20,),
           Text("Total Price=$Price"),
           SizedBox(height: 10,),
