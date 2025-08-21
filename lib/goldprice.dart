@@ -10,8 +10,12 @@ class _GoldpriceState extends State<Goldprice> {
   TextEditingController tolapriceController=TextEditingController();
   TextEditingController tolaquantityController=TextEditingController();
   TextEditingController gramquantityCotroller=TextEditingController();
+  TextEditingController rattiquantityController=TextEditingController();
   double Price=0.0;
-  double Totaltolaprice=0.0;
+  double Pricepergram=0.0;
+  double Totalgramprice=0.0;
+  double Rattipricepergram=0.0;
+  double totalrattiprice=0.0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,25 +79,54 @@ class _GoldpriceState extends State<Goldprice> {
               ),
             ),
           ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black),
+            ),
+            child: TextFormField(
+              style: TextStyle(color: Colors.black),
+              controller: rattiquantityController,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Enter ratti quantity',
+                hintStyle: TextStyle(color: Colors.orange),
+              ),
+            ),
+          ),
           FloatingActionButton(onPressed: (){
-            double tolaprice=double.parse(tolapriceController.text);
-            double tolaquantity=double.parse(tolaquantityController.text);
-            double gramquantity=double.parse(gramquantityCotroller.text);
+                double tolaprice=double.parse(tolapriceController.text);
+                double tolaquantity=double.parse(tolaquantityController.text);
+                double gramquantity=double.parse(gramquantityCotroller.text);
+                double rattiquantity=double.parse(rattiquantityController.text);
 
-            double Totaltolaprice=tolaprice*tolaquantity;
+                double Totaltolaprice=tolaprice*tolaquantity;
 
-            double pricepergram=tolaprice/12;
+                Pricepergram=tolaprice/12;
 
-            double totalgramprice=pricepergram*gramquantity;
+                Totalgramprice=(tolaprice/12)*gramquantity;
 
-            Price=Totaltolaprice+totalgramprice;
-            setState(() {
+                Rattipricepergram=Pricepergram/8;
 
-            });
+                totalrattiprice=(Pricepergram/8)*rattiquantity;
+
+                Price=Totaltolaprice+Totalgramprice+totalrattiprice;
+
+                setState(() {
+
+                });
           },child: Text("Calculate",style: TextStyle(color: Colors.orange,fontSize: 13),),backgroundColor: Colors.black,),
           SizedBox(height: 20,),
           Text("Total Price=$Price"),
-          Text("Total tola price=$Totaltolaprice"),
+          SizedBox(height: 10,),
+          Text("Pricepergram=$Pricepergram"),
+          SizedBox(height: 10,),
+          Text("Totalgramprice=$Totalgramprice"),
+          SizedBox(height: 10,),
+          Text("Rattipricepergram=$Rattipricepergram"),
+          SizedBox(height: 10,),
+          Text("totalrattiprice=$totalrattiprice")
         ],
         ),
       ),
