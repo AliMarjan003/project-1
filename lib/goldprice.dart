@@ -1,136 +1,179 @@
 import 'package:flutter/material.dart';
-class Goldprice extends StatefulWidget {
-  const Goldprice({super.key});
+class Goldapp extends StatefulWidget {
+  const Goldapp({super.key});
 
   @override
-  State<Goldprice> createState() => _GoldpriceState();
+  State<Goldapp> createState() => _GoldappState();
 }
 
-class _GoldpriceState extends State<Goldprice> {
-  TextEditingController tolapriceController=TextEditingController();
-  TextEditingController tolaquantityController=TextEditingController();
-  TextEditingController gramquantityCotroller=TextEditingController();
-  TextEditingController rattiquantityController=TextEditingController();
-  double Price=0.0;
-  double Pricepergram=0.0;
-  double Totalgramprice=0.0;
-  double Rattipricepergram=0.0;
-  double totalrattiprice=0.0;
+class _GoldappState extends State<Goldapp> {
   @override
+  TextEditingController TolapriceController=TextEditingController();
+  TextEditingController TolaQuantityController=TextEditingController();
+  TextEditingController GramQuantityController=TextEditingController();
+  TextEditingController RattiQuantityController=TextEditingController();
+  String error="";
+  double Total_Price=0.0;
+  double TotalGramprice=0.0;
+  double TotalRattiprice=0.0;
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:
-      Scaffold(
+      home: Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: (){
+          TolapriceController.clear();
+          TolaQuantityController.clear();
+          GramQuantityController.clear();
+          RattiQuantityController.clear();
+          Total_Price=0;
+          TotalGramprice=0;
+          TotalRattiprice=0;
+          setState(() {
+
+          });
+        },backgroundColor: Colors.orangeAccent,child: Icon(Icons.refresh,color: Colors.black,),),
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text("Gold Price Calculator",style: TextStyle(color: Colors.orange,fontWeight: FontWeight.bold,fontSize: 40),),
+          title: Text("Gold Price Calculator",style: TextStyle(color: Colors.orangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
           centerTitle: true,
         ),
-        backgroundColor: Colors.white,
-        body:
-        Column(children: [
-          SizedBox(height: 20,),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black),
-            ),
-            child: TextFormField(
-              style: TextStyle(color: Colors.black),
-              controller: tolapriceController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter tola price',
-                hintStyle: TextStyle(color: Colors.orange),
+        backgroundColor: Colors.black,
+        body: Column(
+          children: [
+            SizedBox(height: 20,),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(color: Colors.orangeAccent)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  controller: TolapriceController,
+                  style: TextStyle(color:Colors.orangeAccent),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Enter Tola Price",
+                    hintStyle: TextStyle(color: Colors.orangeAccent)
+                  ),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black),
-            ),
-            child: TextFormField(
-              style: TextStyle(color: Colors.black),
-              controller: tolaquantityController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter tola quantity',
-                hintStyle: TextStyle(color: Colors.orange),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.orangeAccent),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  controller: TolaQuantityController,
+                  style: TextStyle(color: Colors.orangeAccent),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Enter Tola Quantity",
+                    hintStyle: TextStyle(color: Colors.orangeAccent)
+                  ),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black),
-            ),
-            child: TextFormField(
-              style: TextStyle(color: Colors.black),
-              controller: gramquantityCotroller,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter gram quantity',
-                hintStyle: TextStyle(color: Colors.orange),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.orangeAccent),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  controller: GramQuantityController,
+                  style: TextStyle(color: Colors.orangeAccent),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter Gram Quantity',
+                    hintStyle: TextStyle(color: Colors.orangeAccent)
+                  ),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.black),
-            ),
-            child: TextFormField(
-              style: TextStyle(color: Colors.black),
-              controller: rattiquantityController,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Enter ratti quantity',
-                hintStyle: TextStyle(color: Colors.orange),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 10,vertical: 10,),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.orangeAccent),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: TextFormField(
+                  controller: RattiQuantityController,
+                  style: TextStyle(color: Colors.orangeAccent),
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter Ratti Quantity',
+                    hintStyle: TextStyle(color: Colors.orangeAccent)
+                  ),
+                ),
               ),
             ),
-          ),
-          FloatingActionButton(onPressed: (){
-            
-                double tolaprice=double.parse(tolapriceController.text);
-                double tolaquantity=double.parse(tolaquantityController.text);
-                double gramquantity=double.parse(gramquantityCotroller.text);
-                double rattiquantity=double.parse(rattiquantityController.text);
+            FloatingActionButton(onPressed: (){
+              if(TolapriceController.text=='')
+                {
+                  error="Tola Price must be enter";
+                  setState(() {
 
-                double Totaltolaprice=tolaprice*tolaquantity;
+                  });
+                }
+              else
+              error='';
+                {
+                  if(TolaQuantityController.text=='')
+                    {
+                      TolaQuantityController.text='0';
+                    }
+                  if(GramQuantityController.text=='')
+                    {
+                      GramQuantityController.text='0';
+                    }
+                  if(RattiQuantityController.text=='')
+                    {
+                      RattiQuantityController.text='0';
+                    }
+                }
+              double tolaprice=double.parse(TolapriceController.text);
+              double tolaquantity=double.parse(TolaQuantityController.text);
+              double gramquantity=double.parse(GramQuantityController.text);
+              double rattiquantity=double.parse(RattiQuantityController.text);
 
-                Pricepergram=tolaprice/12;
+              double Totaltolaprice=tolaprice*tolaquantity;
+              
 
-                Totalgramprice=(tolaprice/12)*gramquantity;
+              TotalGramprice=(tolaprice/12)*gramquantity;
+              
 
-                Rattipricepergram=tolaprice/96;
+              TotalRattiprice=(tolaprice/96)*rattiquantity;
 
-                totalrattiprice=(tolaprice/96)*rattiquantity;
+              Total_Price=Totaltolaprice+TotalGramprice+TotalRattiprice;
 
-                Price=Totaltolaprice+Totalgramprice+totalrattiprice;
+              setState(() {
 
-                setState(() {
-
-                });
-          },
-            child: Text("Calculate",style: TextStyle(color: Colors.orange,fontSize: 13),),backgroundColor: Colors.black,
-          ),
-          SizedBox(height: 20,),
-          Text("Total Price=$Price"),
-          SizedBox(height: 10,),
-          Text("Pricepergram=$Pricepergram"),
-          SizedBox(height: 10,),
-          Text("Totalgramprice=$Totalgramprice"),
-          SizedBox(height: 10,),
-          Text("Rattipricepergram=$Rattipricepergram"),
-          SizedBox(height: 10,),
-          Text("totalrattiprice=$totalrattiprice")
-        ],
+              });
+            },
+              child: Text("Calculate",style: TextStyle(color: Colors.orangeAccent,fontSize: 13),),backgroundColor: Colors.black,
+            ),
+            SizedBox(height: 20,),
+            Text("Total Price= $Total_Price",style: TextStyle(color: Colors.orangeAccent),),
+            SizedBox(height: 10,),
+            Text("Total Gram Price= $TotalGramprice",style: TextStyle(color: Colors.orangeAccent),),
+            SizedBox(height: 10,),
+            Text("Total Ratti Price= $TotalRattiprice",style: TextStyle(color: Colors.orangeAccent),),
+            SizedBox(height: 10,),
+            Text("$error",style: TextStyle(color: Colors.red),),
+            Spacer(),
+            Text("Developed By: Ali Marjan",style: TextStyle(color: Colors.orangeAccent),),
+            SizedBox(height: 35,),
+          ],
         ),
       ),
     );
