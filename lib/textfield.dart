@@ -78,7 +78,7 @@ class Textfield extends StatelessWidget {
                 onPressed: (){print("Logged in");
                   },
                 child: Text("Login",style: TextStyle(color: Colors.white),),),
-            )
+            ),
           ],
         ),
       ),

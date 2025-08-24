@@ -34,7 +34,7 @@ class _GoldappState extends State<Goldapp> {
         },backgroundColor: Colors.orangeAccent,child: Icon(Icons.refresh,color: Colors.black,),),
         appBar: AppBar(
           backgroundColor: Colors.black,
-          title: Text("Gold Price Calculator",style: TextStyle(color: Colors.orangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
+          title: Text("Welcome To Gold Price Calculator",style: TextStyle(color: Colors.orangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
           centerTitle: true,
         ),
         backgroundColor: Colors.black,
