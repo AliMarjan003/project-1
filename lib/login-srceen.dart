@@ -11,13 +11,14 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text("Create Your Account",style: TextStyle(color: Colors.orangeAccent,fontSize: 30,fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: 30,),
